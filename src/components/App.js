@@ -21,6 +21,17 @@ const App = () => (
         <Route path="/about" exact component={() => <div>About Us</div>} />
         <Route path="/contact" exact component={() => <div>Contact Us</div>} />
         <Route path="/estimate" exact component={() => <div>Estimate</div>} />
+        <Route
+          path="/customsoftware"
+          exact
+          component={() => <div>Custom Software</div>}
+        />
+        <Route
+          path="/mobileapps"
+          exact
+          component={() => <div>Mobile Apps</div>}
+        />
+        <Route path="/websites" exact component={() => <div>Websites</div>} />
       </Switch>
     </BrowserRouter>
   </ThemeProvider>
