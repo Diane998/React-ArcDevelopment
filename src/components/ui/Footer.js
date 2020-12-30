@@ -42,12 +42,20 @@ const useStyles = makeStyles(theme => ({
   },
   icon: {
     height: '4em',
-    width: '4em'
+    width: '4em',
+    [theme.breakpoints.down('xs')]: {
+      height: '2em',
+      width: '2em'
+    }
   },
   socialContainer: {
     position: 'abosolute',
     marginTop: '-5.1em',
-    right: '1.5em'
+    marginLeft: '-1.5em',
+    [theme.breakpoints.down('xs')]: {
+      marginTop: '-3.3em',
+      marginLeft: ' -1.2em'
+    }
   }
 }));
 
