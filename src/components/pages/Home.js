@@ -10,6 +10,8 @@ import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import ButtonArrow from '../ui/ButtonArrow';
 
+import CallToAction from '../ui/CallToAction';
+
 import animationData from '../../animations/landinganimation/data';
 import customSoftwareIcon from '../../assets/Custom Software Icon.svg';
 import mobileAppsIcon from '../../assets/mobileIcon.svg';
@@ -414,6 +416,10 @@ const Home = () => {
 
           <div className={classes.infoBackground} />
         </Grid>
+      </Grid>
+      <Grid item>
+        {/* call to action */}
+        <CallToAction />
       </Grid>
     </Grid>
   );
