@@ -6,12 +6,16 @@ import useMediaQuery from '@material-ui/core/useMediaQuery';
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
+import Card from '@material-ui/core/Card';
+import CardContent from '@material-ui/core/CardContent';
 import ButtonArrow from '../ui/ButtonArrow';
 
 import animationData from '../../animations/landinganimation/data';
 import customSoftwareIcon from '../../assets/Custom Software Icon.svg';
 import mobileAppsIcon from '../../assets/mobileIcon.svg';
 import websitesIcon from '../../assets/websiteIcon.svg';
+import revolutionBackround from '../../assets/repeatingBackground.svg';
+import infoBackground from '../../assets/infoBackground.svg';
 
 const useStyles = makeStyles(theme => ({
   mainContainer: { margin: '5em 2em 0em 0em' },
@@ -88,6 +92,33 @@ const useStyles = makeStyles(theme => ({
     [theme.breakpoints.down('sm')]: {
       padding: 25
     }
+  },
+  revolutionBackground: {
+    backgroundImage: `url(${revolutionBackround})`,
+    backgroundPosition: 'center',
+    backgroundSize: 'cover',
+    backgroundRepeat: 'no-repeat',
+    height: '100%',
+    width: '100%'
+  },
+  revolutionCard: {
+    position: 'absolute',
+    boxShadow: theme.shadows[10],
+    borderRadius: 15,
+    padding: '10em',
+    [theme.breakpoints.down('sm')]: {
+      padding: '8em 0',
+      borderRadius: 0,
+      width: '100%'
+    }
+  },
+  infoBackground: {
+    backgroundImage: `url(${infoBackground})`,
+    backgroundPosition: 'center',
+    backgroundSize: 'cover',
+    backgroundRepeat: 'no-repeat',
+    height: '100%',
+    width: '100%'
   }
 }));
 
@@ -95,6 +126,7 @@ const Home = () => {
   const classes = useStyles();
   const theme = useTheme();
   const matchesSM = useMediaQuery(theme.breakpoints.down('sm'));
+  const matchesXS = useMediaQuery(theme.breakpoints.down('xs'));
 
   const defaultOptions = {
     loop: true,
@@ -270,6 +302,117 @@ const Home = () => {
               alt="website icon"
             />
           </Grid>
+        </Grid>
+      </Grid>
+      <Grid item>
+        {/* rev block */}
+        <Grid
+          container
+          style={{ height: '100em', marginTop: '12em' }}
+          alignItems="center"
+          justify="center"
+        >
+          <Card className={classes.revolutionCard}>
+            <CardContent>
+              <Grid
+                container
+                direction="column"
+                style={{ textAlign: 'center' }}
+              >
+                <Grid item>
+                  <Typography variant="h3">The Revolution</Typography>
+                </Grid>
+                <Grid item>
+                  <Typography variant="subtitle1">
+                    Visionary insights with cutting-eedge texhnology is a recipe
+                    for revolution.
+                  </Typography>
+                  <Button variant="outlined" className={classes.learn}>
+                    <spane style={{ marginRight: 5 }}>Learn More</spane>
+                    <ButtonArrow
+                      width={15}
+                      height={15}
+                      fill={theme.palette.common.blue}
+                    />
+                  </Button>
+                </Grid>
+              </Grid>
+            </CardContent>
+          </Card>
+          <div className={classes.revolutionBackground} />
+        </Grid>
+      </Grid>
+      <Grid item>
+        {/* Info block */}
+        <Grid
+          container
+          style={{ height: '80em' }}
+          alignItems="center"
+          direction="row"
+        >
+          <Grid
+            item
+            container
+            style={{
+              position: 'absolute',
+              textAlign: matchesXS ? 'center' : undefined
+            }}
+            direction={matchesXS ? 'column' : 'row'}
+            spacing={matchesXS ? 10 : 0}
+          >
+            <Grid
+              item
+              sm
+              style={{
+                marginLeft: matchesXS ? 0 : matchesSM ? '2em' : '5em',
+                textAlign: matchesXS ? 'center' : 'left'
+              }}
+            >
+              <Grid container direction="column">
+                <Typography variant="h2" style={{ color: 'white' }}>
+                  About Us
+                </Typography>
+                <Typography variant="subtitle2">Let's get personal.</Typography>
+                <Grid item>
+                  <Button
+                    style={{ color: 'white', borderColor: 'white' }}
+                    className={classes.learnServices}
+                    variant="outlined"
+                  >
+                    <span style={{ marginRight: 5 }}>Learn More</span>
+                    <ButtonArrow width={10} height={10} fill="white" />
+                  </Button>
+                </Grid>
+              </Grid>
+            </Grid>
+            <Grid
+              item
+              sm
+              style={{
+                marginRight: matchesXS ? 0 : matchesSM ? '2em' : '5em',
+                textAlign: matchesXS ? 'center' : 'right'
+              }}
+            >
+              <Grid container direction="column">
+                <Typography variant="h2" style={{ color: 'white' }}>
+                  Contact Us
+                </Typography>
+                <Typography variant="subtitle2">Say hello!</Typography>
+                <Grid item>
+                  <Button
+                    style={{ color: 'white', borderColor: 'white' }}
+                    className={classes.learnServices}
+                    variant="outlined"
+                  >
+                    <span style={{ marginRight: 5 }}>Learn More</span>
+                    <ButtonArrow width={10} height={10} fill="white" />
+                  </Button>
+                </Grid>
+              </Grid>
+            </Grid>
+          </Grid>
+
+          <div className={classes.infoBackground} />
         </Grid>
       </Grid>
     </Grid>
