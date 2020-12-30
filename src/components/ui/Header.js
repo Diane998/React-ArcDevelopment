@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import useScrollTrigger from '@material-ui/core/useScrollTrigger';
-import { makeStyles } from '@material-ui/styles';
+import { getThemeProps, makeStyles } from '@material-ui/styles';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Button from '@material-ui/core/Button';
@@ -117,11 +117,11 @@ const Header = props => {
 
   const matches = useMediaQuery(theme.breakpoints.down('md'));
 
-  const [value, setValue] = useState(0);
   const [anchorEl, setAnchorEl] = useState(null);
   const [openMenu, setOpenMenu] = useState(false);
-  const [selectedIndex, setSelectedIndex] = useState(0);
   const [openDrawer, setOpenDrawer] = useState(false);
+
+  const { value, setValue, selectedIndex, setSelectedIndex } = props;
 
   const handleChange = (e, newValue) => {
     setValue(newValue);
@@ -195,7 +195,7 @@ const Header = props => {
           break;
       }
     });
-  }, [value, menuOptions, selectedIndex, routes]);
+  }, [value, menuOptions, selectedIndex, routes, props]);
 
   const tabs = (
     <>
