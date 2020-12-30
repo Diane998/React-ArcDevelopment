@@ -4,6 +4,7 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import theme from './ui/Theme';
 import Header from './ui/Header';
 import Footer from './ui/Footer';
+import Home from './pages/Home';
 
 import { ThemeProvider } from '@material-ui/styles';
 
@@ -21,11 +22,7 @@ const App = () => {
           setSelectedIndex={setSelectedIndex}
         />
         <Switch>
-          <Route
-            path="/"
-            exact
-            component={() => <div style={{ height: '2000px' }}>Home</div>}
-          />
+          <Route path="/" exact component={Home} />
           <Route path="/services" exact component={() => <div>Services</div>} />
           <Route
             path="/revolution"
