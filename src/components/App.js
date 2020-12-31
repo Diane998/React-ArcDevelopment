@@ -6,6 +6,7 @@ import Header from './ui/Header';
 import Footer from './ui/Footer';
 import Home from './pages/Home';
 import Services from './pages/Services';
+import CustomSoftware from './ui/CustomSoftware';
 
 import { ThemeProvider } from '@material-ui/styles';
 
@@ -60,7 +61,13 @@ const App = () => {
           <Route
             path="/customsoftware"
             exact
-            component={() => <div>Custom Software</div>}
+            render={props => (
+              <CustomSoftware
+                {...props}
+                setValue={setValue}
+                setSelectedIndex={setSelectedIndex}
+              />
+            )}
           />
           <Route
             path="/mobileapps"
