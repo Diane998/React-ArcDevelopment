@@ -1,5 +1,7 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
+import useMediaQuery from '@material-ui/core/useMediaQuery';
 
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
@@ -21,10 +23,12 @@ const useStyles = makeStyles(theme => ({
     backgroundPosition: 'center',
     backgroundSize: 'cover',
     backgroundRepeat: 'no-repeat',
+    backgroundAttachment: 'fixed',
     height: '60em',
     width: '100%',
     [theme.breakpoints.down('md')]: {
-      backgroundImage: `url(${mobileBackground})`
+      backgroundImage: `url(${mobileBackground})`,
+      backgroundAttachment: 'inherit'
     }
   },
   estimate: {
@@ -33,26 +37,37 @@ const useStyles = makeStyles(theme => ({
     borderRadius: 50,
     height: 80,
     width: 205,
-    marginRight: '5em',
+    margin: '0em 5em 0em 2em',
     fontSize: '1.5rem',
     '&:hover': {
       backgroundColor: theme.palette.secondary.light
+    },
+    [theme.breakpoints.down('sm')]: {
+      margin: 0
     }
   }
 }));
 
-const CallToAction = () => {
+const CallToAction = ({ setValue }) => {
   const classes = useStyles();
   const theme = useTheme();
+  const matchesSM = useMediaQuery(theme.breakpoints.down('sm'));
 
   return (
     <Grid
       container
       className={classes.background}
       alignItems="center"
-      justify="space-between"
+      justify={matchesSM ? 'center' : 'space-between'}
+      direction={matchesSM ? 'column' : 'row'}
     >
-      <Grid item style={{ marginLeft: '5em' }}>
+      <Grid
+        item
+        style={{
+          marginLeft: matchesSM ? 0 : '5em',
+          textAlign: matchesSM ? 'center' : 'inherit'
+        }}
+      >
         <Grid container direction="column">
           <Grid item>
             <Typography variant="h2">
@@ -63,8 +78,14 @@ const CallToAction = () => {
             <Typography variant="subtitle2" style={{ fontSize: '1.5rem' }}>
               Take advantage of the 21st Century.
             </Typography>
-            <Grid item container>
-              <Button className={classes.learn} variant="outlined">
+            <Grid item container justify={matchesSM ? 'center' : undefined}>
+              <Button
+                onClick={() => setValue(2)}
+                component={Link}
+                to="/revolution"
+                className={classes.learn}
+                variant="outlined"
+              >
                 <span style={{ marginRight: 5 }}>Learn More</span>
                 <ButtonArrow
                   width={15}
@@ -77,7 +98,13 @@ const CallToAction = () => {
         </Grid>
       </Grid>
       <Grid item>
-        <Button variant="contained" className={classes.estimate}>
+        <Button
+          onClick={() => setValue(5)}
+          component={Link}
+          to="/estimate"
+          variant="contained"
+          className={classes.estimate}
+        >
           Free Estimate
         </Button>
       </Grid>

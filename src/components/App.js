@@ -22,7 +22,17 @@ const App = () => {
           setSelectedIndex={setSelectedIndex}
         />
         <Switch>
-          <Route path="/" exact component={Home} />
+          <Route
+            path="/"
+            exact
+            render={props => (
+              <Home
+                {...props}
+                setValue={setValue}
+                setSelectedIndex={setSelectedIndex}
+              />
+            )}
+          />
           <Route path="/services" exact component={() => <div>Services</div>} />
           <Route
             path="/revolution"
@@ -47,13 +57,9 @@ const App = () => {
             component={() => <div>Mobile Apps</div>}
           />
           <Route path="/websites" exact component={() => <div>Websites</div>} />
+          <Route path="/estimate" exact component={() => <div>Estimate</div>} />
         </Switch>
-        <Footer
-          value={value}
-          setValue={setValue}
-          selectedIndex={selectedIndex}
-          setSelectedIndex={setSelectedIndex}
-        />
+        <Footer setValue={setValue} setSelectedIndex={setSelectedIndex} />
       </BrowserRouter>
     </ThemeProvider>
   );

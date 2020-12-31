@@ -150,19 +150,19 @@ const Header = props => {
     { name: 'Services', link: '/services', activeIndex: 1, selectedIndex: 0 },
     {
       name: 'Custom Software Development',
-      link: 'customsoftware',
+      link: '/customsoftware',
       activeIndex: 1,
       selectedIndex: 1
     },
     {
       name: 'IOS/Android App Development',
-      link: 'mobileapps',
+      link: '/mobileapps',
       activeIndex: 1,
       selectedIndex: 2
     },
     {
       name: 'Website Development',
-      link: 'websites',
+      link: '/websites',
       activeIndex: 1,
       selectedIndex: 3
     }
@@ -180,7 +180,8 @@ const Header = props => {
     },
     { name: 'The Revolution', link: '/revolution', activeIndex: 2 },
     { name: 'About Us', link: '/about', activeIndex: 3 },
-    { name: 'Contact Us', link: '/contact', activeIndex: 4 }
+    { name: 'Contact Us', link: '/contact', activeIndex: 4 },
+    { activeIndex: 5 }
   ];
 
   useEffect(() => {
@@ -193,6 +194,9 @@ const Header = props => {
               setSelectedIndex(route.selectedIndex);
             }
           }
+          break;
+        case '/estimate':
+          setValue(5);
           break;
         default:
           break;
@@ -227,6 +231,7 @@ const Header = props => {
         color="secondary"
         component={Link}
         to="/estimate"
+        onClick={() => setValue(5)}
       >
         Free Estimate
       </Button>

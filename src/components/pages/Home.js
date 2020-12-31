@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import Lottie from 'react-lottie';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
@@ -20,7 +21,7 @@ import revolutionBackround from '../../assets/repeatingBackground.svg';
 import infoBackground from '../../assets/infoBackground.svg';
 
 const useStyles = makeStyles(theme => ({
-  mainContainer: { margin: '5em 2em 0em 0em' },
+  mainContainer: { marginTop: '5em', width: '100%' },
   animation: {
     maxWidth: '50em',
     minWidth: '21em',
@@ -124,7 +125,9 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const Home = () => {
+const Home = props => {
+  const { setValue, setSelectedIndex } = props;
+
   const classes = useStyles();
   const theme = useTheme();
   const matchesSM = useMediaQuery(theme.breakpoints.down('sm'));
@@ -164,12 +167,24 @@ const Home = () => {
               className={classes.buttonContainer}
             >
               <Grid item>
-                <Button className={classes.estimate} variant="contained">
+                <Button
+                  onClick={() => setValue(5)}
+                  component={Link}
+                  to="/estimate"
+                  className={classes.estimate}
+                  variant="contained"
+                >
                   Free Estimate
                 </Button>
               </Grid>
               <Grid item>
-                <Button variant="outlined" className={classes.learn}>
+                <Button
+                  onClick={() => setValue(2)}
+                  component={Link}
+                  to="/revolution"
+                  variant="outlined"
+                  className={classes.learn}
+                >
                   <spane style={{ marginRight: 5 }}>Learn More</spane>
                   <ButtonArrow
                     width={15}
@@ -208,7 +223,13 @@ const Home = () => {
               Complete digital solutions, from investigation to{' '}
               <span className={classes.specialText}>celebration.</span>
             </Typography>
-            <Button className={classes.learnServices} variant="outlined">
+            <Button
+              onClick={(() => setValue(1), setSelectedIndex(1))}
+              component={Link}
+              to="/customsoftware"
+              className={classes.learnServices}
+              variant="outlined"
+            >
               <span style={{ marginRight: 5 }}>Learn More</span>
               <ButtonArrow
                 width={10}
@@ -248,7 +269,13 @@ const Home = () => {
               Integrate your web experience or create a standalone app
               {matchesSM ? ' ' : <br />}with either mobile platform.
             </Typography>
-            <Button className={classes.learnServices} variant="outlined">
+            <Button
+              onClick={(() => setValue(1), setSelectedIndex(2))}
+              component={Link}
+              to="/mobileapps"
+              className={classes.learnServices}
+              variant="outlined"
+            >
               <span style={{ marginRight: 5 }}>Learn More</span>
               <ButtonArrow
                 width={10}
@@ -288,7 +315,13 @@ const Home = () => {
             <Typography variant="subtitle1">
               Optimized for Search Engines, built for speed.
             </Typography>
-            <Button className={classes.learnServices} variant="outlined">
+            <Button
+              onClick={(() => setValue(1), setSelectedIndex(3))}
+              component={Link}
+              to="/websites"
+              className={classes.learnServices}
+              variant="outlined"
+            >
               <span style={{ marginRight: 5 }}>Learn More</span>
               <ButtonArrow
                 width={10}
@@ -329,7 +362,13 @@ const Home = () => {
                     Visionary insights with cutting-eedge texhnology is a recipe
                     for revolution.
                   </Typography>
-                  <Button variant="outlined" className={classes.learn}>
+                  <Button
+                    onClick={() => setValue(2)}
+                    component={Link}
+                    to="/revolution"
+                    variant="outlined"
+                    className={classes.learn}
+                  >
                     <spane style={{ marginRight: 5 }}>Learn More</spane>
                     <ButtonArrow
                       width={15}
@@ -351,6 +390,7 @@ const Home = () => {
           style={{ height: '80em' }}
           alignItems="center"
           direction="row"
+          className={classes.infoBackground}
         >
           <Grid
             item
@@ -360,7 +400,6 @@ const Home = () => {
               textAlign: matchesXS ? 'center' : undefined
             }}
             direction={matchesXS ? 'column' : 'row'}
-            spacing={matchesXS ? 10 : 0}
           >
             <Grid
               item
@@ -370,13 +409,20 @@ const Home = () => {
                 textAlign: matchesXS ? 'center' : 'left'
               }}
             >
-              <Grid container direction="column">
+              <Grid
+                style={{ marginBottom: matchesXS ? '10em' : 0 }}
+                container
+                direction="column"
+              >
                 <Typography variant="h2" style={{ color: 'white' }}>
                   About Us
                 </Typography>
                 <Typography variant="subtitle2">Let's get personal.</Typography>
                 <Grid item>
                   <Button
+                    onClick={() => setValue(3)}
+                    component={Link}
+                    to="/about"
                     style={{ color: 'white', borderColor: 'white' }}
                     className={classes.learnServices}
                     variant="outlined"
@@ -402,6 +448,9 @@ const Home = () => {
                 <Typography variant="subtitle2">Say hello!</Typography>
                 <Grid item>
                   <Button
+                    onClick={() => setValue(4)}
+                    component={Link}
+                    to="/contact"
                     style={{ color: 'white', borderColor: 'white' }}
                     className={classes.learnServices}
                     variant="outlined"
@@ -413,13 +462,11 @@ const Home = () => {
               </Grid>
             </Grid>
           </Grid>
-
-          <div className={classes.infoBackground} />
         </Grid>
       </Grid>
       <Grid item>
         {/* call to action */}
-        <CallToAction />
+        <CallToAction setValue={setValue} />
       </Grid>
     </Grid>
   );
