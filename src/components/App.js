@@ -5,6 +5,7 @@ import theme from './ui/Theme';
 import Header from './ui/Header';
 import Footer from './ui/Footer';
 import Home from './pages/Home';
+import Services from './pages/Services';
 
 import { ThemeProvider } from '@material-ui/styles';
 
@@ -33,7 +34,17 @@ const App = () => {
               />
             )}
           />
-          <Route path="/services" exact component={() => <div>Services</div>} />
+          <Route
+            path="/services"
+            exact
+            render={props => (
+              <Services
+                {...props}
+                setValue={setValue}
+                setSelectedIndex={setSelectedIndex}
+              />
+            )}
+          />
           <Route
             path="/revolution"
             exact

@@ -409,11 +409,7 @@ const Home = props => {
                 textAlign: matchesXS ? 'center' : 'left'
               }}
             >
-              <Grid
-                style={{ marginBottom: matchesXS ? '10em' : 0 }}
-                container
-                direction="column"
-              >
+              <Grid container direction="column">
                 <Typography variant="h2" style={{ color: 'white' }}>
                   About Us
                 </Typography>
