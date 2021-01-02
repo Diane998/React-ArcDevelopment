@@ -114,11 +114,7 @@ const Contact = props => {
           event.target.value
         );
 
-        if (!valid) {
-          setEmailHelper('Invalid email');
-        } else {
-          setEmailHelper('');
-        }
+        !valid ? setEmailHelper('Invalid email') : setEmailHelper('');
         break;
       case 'phone':
         setPhone(event.target.value);
@@ -126,11 +122,7 @@ const Contact = props => {
           event.target.value
         );
 
-        if (!valid) {
-          setPhoneHelper('Invalid phone');
-        } else {
-          setPhoneHelper('');
-        }
+        !valid ? setPhoneHelper('Invalid phone') : setPhoneHelper('');
         break;
       default:
         break;
@@ -324,22 +316,13 @@ const Contact = props => {
         onClose={() => setOpen(false)}
         PaperProps={{
           style: {
-            paddingTop: matchesXS ? '1em' : '5em',
-            paddingBottom: matchesXS ? '1em' : '5em',
-            paddingLeft: matchesXS
-              ? 0
+            padding: matchesXS
+              ? '1em 0'
               : matchesSM
-              ? 0
+              ? '5em 0'
               : matchesMD
-              ? '15em'
-              : '25em',
-            paddingRight: matchesXS
-              ? 0
-              : matchesSM
-              ? 0
-              : matchesMD
-              ? '15em'
-              : '25em'
+              ? '5em 15em'
+              : '5em 25em'
           }
         }}
       >
