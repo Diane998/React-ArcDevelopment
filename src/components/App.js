@@ -9,6 +9,7 @@ import Services from './pages/Services';
 import CustomSoftware from './pages/CustomSoftware';
 import MobileApps from './pages/MobileApps';
 import Websites from './pages/Websites';
+import Revolution from './pages/Revolution';
 
 import { ThemeProvider } from '@material-ui/styles';
 
@@ -84,7 +85,13 @@ const App = () => {
           <Route
             exact
             path="/revolution"
-            component={() => <div>Revolution</div>}
+            render={props => (
+              <Revolution
+                {...props}
+                setValue={setValue}
+                setSelectedIndex={setSelectedIndex}
+              />
+            )}
           />
           <Route exact path="/about" component={() => <div>About</div>} />
           <Route exact path="/contact" component={() => <div>Contact</div>} />
