@@ -164,6 +164,7 @@ const Home = props => {
             <Grid
               container
               alignItems="center"
+              justify="space-around"
               className={classes.buttonContainer}
             >
               <Grid item>
@@ -185,7 +186,9 @@ const Home = props => {
                   variant="outlined"
                   className={classes.learn}
                 >
-                  <spane style={{ marginRight: 5 }}>Learn More</spane>
+                  <span style={{ marginRight: matchesSM ? 0 : 5 }}>
+                    Learn More
+                  </span>
                   <ButtonArrow
                     width={15}
                     height={15}
@@ -369,7 +372,7 @@ const Home = props => {
                     variant="outlined"
                     className={classes.learn}
                   >
-                    <spane style={{ marginRight: 5 }}>Learn More</spane>
+                    <span style={{ marginRight: 5 }}>Learn More</span>
                     <ButtonArrow
                       width={15}
                       height={15}
