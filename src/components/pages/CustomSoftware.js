@@ -107,7 +107,7 @@ const CustomSoftware = props => {
               to="/services"
               onClick={() => props.setSelectedIndex(0)}
             >
-              <img src={backArrow} alt="Back to Services Page" />
+              <img src={backArrow} alt="Back to the Services Page" />
             </IconButton>
           </Grid>
         </Hidden>
@@ -167,7 +167,7 @@ const CustomSoftware = props => {
             >
               <img
                 src={forwardArrow}
-                alt="Forward to iOS/Android App Development Page"
+                alt="Forward to the iOS/Android App Development Page"
               />
             </IconButton>
           </Grid>

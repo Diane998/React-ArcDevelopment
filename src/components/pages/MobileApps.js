@@ -71,9 +71,12 @@ const MobileApps = props => {
               style={{ backgroundColor: 'transparent' }}
               component={Link}
               to="/customsoftware"
-              onClick={() => props.setSelectedIndex(0)}
+              onClick={() => props.setSelectedIndex(1)}
             >
-              <img src={backArrow} alt="Back to Services Page" />
+              <img
+                src={backArrow}
+                alt="Back to the Custom Software Development Page"
+              />
             </IconButton>
           </Grid>
         </Hidden>
@@ -117,11 +120,11 @@ const MobileApps = props => {
               style={{ backgroundColor: 'transparent' }}
               component={Link}
               to="/websites"
-              onClick={() => props.setSelectedIndex(2)}
+              onClick={() => props.setSelectedIndex(3)}
             >
               <img
                 src={forwardArrow}
-                alt="Forward to iOS/Android App Development Page"
+                alt="Forward to the Websites Development Page"
               />
             </IconButton>
           </Grid>
