@@ -10,6 +10,7 @@ import CustomSoftware from './pages/CustomSoftware';
 import MobileApps from './pages/MobileApps';
 import Websites from './pages/Websites';
 import Revolution from './pages/Revolution';
+import About from './pages/About';
 
 import { ThemeProvider } from '@material-ui/styles';
 
@@ -93,7 +94,17 @@ const App = () => {
               />
             )}
           />
-          <Route exact path="/about" component={() => <div>About</div>} />
+          <Route
+            exact
+            path="/about"
+            render={props => (
+              <About
+                {...props}
+                setValue={setValue}
+                setSelectedIndex={setSelectedIndex}
+              />
+            )}
+          />
           <Route exact path="/contact" component={() => <div>Contact</div>} />
           <Route exact path="/estimate" component={() => <div>Estimate</div>} />
         </Switch>
