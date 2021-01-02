@@ -11,6 +11,7 @@ import MobileApps from './pages/MobileApps';
 import Websites from './pages/Websites';
 import Revolution from './pages/Revolution';
 import About from './pages/About';
+import Contact from './pages/Contact';
 
 import { ThemeProvider } from '@material-ui/styles';
 
@@ -105,7 +106,17 @@ const App = () => {
               />
             )}
           />
-          <Route exact path="/contact" component={() => <div>Contact</div>} />
+          <Route
+            exact
+            path="/contact"
+            render={props => (
+              <Contact
+                {...props}
+                setValue={setValue}
+                setSelectedIndex={setSelectedIndex}
+              />
+            )}
+          />
           <Route exact path="/estimate" component={() => <div>Estimate</div>} />
         </Switch>
         <Footer setValue={setValue} setSelectedIndex={setSelectedIndex} />
