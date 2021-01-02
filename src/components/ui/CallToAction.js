@@ -78,7 +78,12 @@ const CallToAction = ({ setValue }) => {
             <Typography variant="subtitle2" style={{ fontSize: '1.5rem' }}>
               Take advantage of the 21st Century.
             </Typography>
-            <Grid item container justify={matchesSM ? 'center' : undefined}>
+            <Grid
+              item
+              container
+              justify={matchesSM ? 'center' : undefined}
+              style={{ margin: matchesSM ? '1em 0' : 0 }}
+            >
               <Button
                 onClick={() => setValue(2)}
                 component={Link}
