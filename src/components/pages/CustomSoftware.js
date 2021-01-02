@@ -42,7 +42,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const CustomSoftware = props => {
+const CustomSoftware = ({ setValue, setSelectedIndex }) => {
   const classes = useStyles();
   const theme = useTheme();
   const matchesMD = useMediaQuery(theme.breakpoints.down('md'));
@@ -105,7 +105,7 @@ const CustomSoftware = props => {
               style={{ backgroundColor: 'transparent' }}
               component={Link}
               to="/services"
-              onClick={() => props.setSelectedIndex(0)}
+              onClick={() => setSelectedIndex(0)}
             >
               <img src={backArrow} alt="Back to the Services Page" />
             </IconButton>
@@ -163,7 +163,7 @@ const CustomSoftware = props => {
               style={{ backgroundColor: 'transparent' }}
               component={Link}
               to="/mobileapps"
-              onClick={() => props.setSelectedIndex(2)}
+              onClick={() => setSelectedIndex(2)}
             >
               <img
                 src={forwardArrow}
@@ -298,7 +298,6 @@ const CustomSoftware = props => {
           <Grid item md>
             <Lottie
               options={scaleOptions}
-              isStopped={true}
               style={{ maxHeight: 260, maxWidth: 280 }}
             />
           </Grid>
@@ -458,7 +457,7 @@ const CustomSoftware = props => {
         </Grid>
       </Grid>
       <Grid item>
-        <CallToAction setValue={props.setValue} />
+        <CallToAction setValue={setValue} />
       </Grid>
     </Grid>
   );

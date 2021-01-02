@@ -117,19 +117,15 @@ const useStyles = makeStyles(theme => ({
 const Header = props => {
   const classes = useStyles();
   const theme = useTheme();
-
   const iOS = process.browser && /iPad|iPhone|iPod/.test(navigator.userAgent);
-
   const matches = useMediaQuery(theme.breakpoints.down('md'));
 
+  const [openDrawer, setOpenDrawer] = useState(false);
   const [anchorEl, setAnchorEl] = useState(null);
   const [openMenu, setOpenMenu] = useState(false);
-  const [openDrawer, setOpenDrawer] = useState(false);
-
-  const { value, setValue, selectedIndex, setSelectedIndex } = props;
 
   const handleChange = (e, newValue) => {
-    setValue(newValue);
+    props.setValue(newValue);
   };
 
   const handleClick = e => {
@@ -137,15 +133,15 @@ const Header = props => {
     setOpenMenu(true);
   };
 
-  const handleClose = e => {
-    setAnchorEl(null);
-    setOpenMenu(false);
-  };
-
   const handleMenuItemClick = (e, i) => {
     setAnchorEl(null);
     setOpenMenu(false);
-    setSelectedIndex(i);
+    props.setSelectedIndex(i);
+  };
+
+  const handleClose = e => {
+    setAnchorEl(null);
+    setOpenMenu(false);
   };
 
   const menuOptions = [
@@ -157,7 +153,7 @@ const Header = props => {
       selectedIndex: 1
     },
     {
-      name: 'IOS/Android App Development',
+      name: 'iOS/Android App Development',
       link: '/mobileapps',
       activeIndex: 1,
       selectedIndex: 2
@@ -177,63 +173,65 @@ const Header = props => {
       link: '/services',
       activeIndex: 1,
       ariaOwns: anchorEl ? 'simple-menu' : undefined,
-      ariaPopUp: anchorEl ? 'true' : undefined,
-      mouseOver: e => handleClick(e)
+      ariaPopup: anchorEl ? 'true' : undefined,
+      mouseOver: event => handleClick(event)
     },
     { name: 'The Revolution', link: '/revolution', activeIndex: 2 },
     { name: 'About Us', link: '/about', activeIndex: 3 },
-    { name: 'Contact Us', link: '/contact', activeIndex: 4 },
-    { activeIndex: 5 }
+    { name: 'Contact Us', link: '/contact', activeIndex: 4 }
   ];
 
   useEffect(() => {
     [...menuOptions, ...routes].forEach(route => {
       switch (window.location.pathname) {
         case `${route.link}`:
-          if (value !== route.activeIndex) {
-            setValue(route.activeIndex);
-            if (route.selectedIndex && route.selectedIndex !== selectedIndex) {
-              setSelectedIndex(route.selectedIndex);
+          if (props.value !== route.activeIndex) {
+            props.setValue(route.activeIndex);
+            if (
+              route.selectedIndex &&
+              route.selectedIndex !== props.selectedIndex
+            ) {
+              props.setSelectedIndex(route.selectedIndex);
             }
           }
           break;
         case '/estimate':
-          setValue(5);
+          props.setValue(5);
           break;
         default:
           break;
       }
     });
-  }, [value, menuOptions, selectedIndex, routes, props]);
+  }, [props.value, menuOptions, props.selectedIndex, routes, props]);
 
   const tabs = (
     <>
       <Tabs
-        value={value}
+        value={props.value}
         onChange={handleChange}
         className={classes.tabContainer}
         indicatorColor="primary"
       >
-        {routes.map((route, i) => (
+        {routes.map((route, index) => (
           <Tab
-            key={`${route.name}${i}`}
+            key={`${route}${index}`}
             className={classes.tab}
             component={Link}
             to={route.link}
             label={route.name}
             aria-owns={route.ariaOwns}
-            aria-haspopup={route.ariaPopUp}
+            aria-haspopup={route.ariaPopup}
             onMouseOver={route.mouseOver}
           />
         ))}
       </Tabs>
       <Button
-        className={classes.button}
-        variant="contained"
-        color="secondary"
         component={Link}
         to="/estimate"
-        onClick={() => setValue(5)}
+        variant="contained"
+        color="secondary"
+        className={classes.button}
+        onClick={() => props.setValue(5)}
       >
         Free Estimate
       </Button>
@@ -242,26 +240,28 @@ const Header = props => {
         anchorEl={anchorEl}
         open={openMenu}
         onClose={handleClose}
-        MenuListProps={{ onMouseLeave: handleClose }}
         classes={{ paper: classes.menu }}
+        MenuListProps={{
+          onMouseLeave: handleClose
+        }}
         elevation={0}
-        keepMounted
         style={{ zIndex: 1302 }}
+        keepMounted
       >
-        {menuOptions.map(({ name, link }, i) => (
+        {menuOptions.map((option, i) => (
           <MenuItem
-            key={name}
-            onClick={e => {
-              handleMenuItemClick(e, i);
-              setValue(i);
+            key={`${option}${i}`}
+            component={Link}
+            to={option.link}
+            classes={{ root: classes.menuItem }}
+            onClick={event => {
+              handleMenuItemClick(event, i);
+              props.setValue(1);
               handleClose();
             }}
-            selected={i === selectedIndex}
-            component={Link}
-            to={`${link}`}
-            classes={{ root: classes.menuItem }}
+            selected={i === props.selectedIndex && props.value === 1}
           >
-            {name}
+            {option.name}
           </MenuItem>
         ))}
       </Menu>
@@ -287,9 +287,9 @@ const Header = props => {
               to={route.link}
               onClick={() => {
                 setOpenDrawer(false);
-                setValue(route.activeIndex);
+                props.setValue(route.activeIndex);
               }}
-              selected={value === route.activeIndex}
+              selected={props.value === route.activeIndex}
               classes={{ selected: classes.drawerItemSelected }}
             >
               <ListItemText
@@ -307,11 +307,11 @@ const Header = props => {
             }}
             onClick={() => {
               setOpenDrawer(false);
-              setValue(5);
+              props.setValue(5);
             }}
             component={Link}
             to="/estimate"
-            selected={value === 5}
+            selected={props.value === 5}
           >
             <ListItemText className={classes.drawerItemText} disableTypography>
               Free Estimate
@@ -331,16 +331,16 @@ const Header = props => {
   return (
     <>
       <ElevationScroll>
-        <AppBar className={classes.appBar} position="fixed">
+        <AppBar position="fixed" className={classes.appbar}>
           <Toolbar disableGutters>
             <Button
-              disableRipple
               component={Link}
               to="/"
+              disableRipple
+              onClick={() => props.setValue(0)}
               className={classes.logoContainer}
-              onClick={() => setValue(0)}
             >
-              <img src={logo} className={classes.logo} alt="company logo" />
+              <img alt="company logo" className={classes.logo} src={logo} />
             </Button>
             {matches ? drawer : tabs}
           </Toolbar>
