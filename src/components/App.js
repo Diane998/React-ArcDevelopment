@@ -27,8 +27,8 @@ const App = () => {
         />
         <Switch>
           <Route
-            path="/"
             exact
+            path="/"
             render={props => (
               <Home
                 {...props}
@@ -38,8 +38,8 @@ const App = () => {
             )}
           />
           <Route
-            path="/services"
             exact
+            path="/services"
             render={props => (
               <Services
                 {...props}
@@ -49,20 +49,8 @@ const App = () => {
             )}
           />
           <Route
-            path="/revolution"
             exact
-            component={() => <div>Revolution</div>}
-          />
-          <Route path="/about" exact component={() => <div>About Us</div>} />
-          <Route
-            path="/contact"
-            exact
-            component={() => <div>Contact Us</div>}
-          />
-          <Route path="/estimate" exact component={() => <div>Estimate</div>} />
-          <Route
             path="/customsoftware"
-            exact
             render={props => (
               <CustomSoftware
                 {...props}
@@ -72,8 +60,8 @@ const App = () => {
             )}
           />
           <Route
-            path="/mobileapps"
             exact
+            path="/mobileapps"
             render={props => (
               <MobileApps
                 {...props}
@@ -83,8 +71,8 @@ const App = () => {
             )}
           />
           <Route
-            path="/websites"
             exact
+            path="/websites"
             render={props => (
               <Websites
                 {...props}
@@ -93,7 +81,14 @@ const App = () => {
               />
             )}
           />
-          <Route path="/estimate" exact component={() => <div>Estimate</div>} />
+          <Route
+            exact
+            path="/revolution"
+            component={() => <div>Revolution</div>}
+          />
+          <Route exact path="/about" component={() => <div>About</div>} />
+          <Route exact path="/contact" component={() => <div>Contact</div>} />
+          <Route exact path="/estimate" component={() => <div>Estimate</div>} />
         </Switch>
         <Footer setValue={setValue} setSelectedIndex={setSelectedIndex} />
       </BrowserRouter>
