@@ -202,56 +202,13 @@ const Contact = props => {
                 We're waiting.
               </Typography>
             </Grid>
-            <Grid item container style={{ marginTop: '2em' }}>
-              <Grid item>
-                <img
-                  src={phoneIcon}
-                  alt="phone"
-                  style={{ marginRight: '0.5em' }}
-                />
-              </Grid>
-              <Grid item>
-                <Typography
-                  variant="body1"
-                  style={{ color: theme.palette.common.blue, fontSize: '1rem' }}
-                >
-                  <a
-                    href="tel:5555555555"
-                    style={{ textDecoration: 'none', color: 'inherit' }}
-                  >
-                    (555) 555-5555
-                  </a>
-                </Typography>
-              </Grid>
-            </Grid>
-            <Grid item container style={{ marginBottom: '2em' }}>
-              <Grid item>
-                <img
-                  src={emailIcon}
-                  alt="envelope"
-                  style={{ marginRight: '0.5em', verticalAlign: 'bottom' }}
-                />
-              </Grid>
-              <Grid item>
-                <Typography
-                  variant="body1"
-                  style={{ color: theme.palette.common.blue, fontSize: '1rem' }}
-                >
-                  <a
-                    href="mailto:zachary@gmail.com"
-                    style={{ textDecoration: 'none', color: 'inherit' }}
-                  >
-                    zachary@gmail.com
-                  </a>
-                </Typography>
-              </Grid>
-            </Grid>
             <Grid item container direction="column" style={{ width: '20em' }}>
               <Grid item style={{ marginBottom: '0.5em' }}>
                 <TextField
                   label="Name"
                   id="name"
                   fullWidth
+                  autoComplete="off"
                   value={name}
                   onChange={event => setName(event.target.value)}
                 />
@@ -263,6 +220,7 @@ const Contact = props => {
                   helperText={emailHelper}
                   id="email"
                   fullWidth
+                  autoComplete="off"
                   value={email}
                   onChange={onChange}
                 />
@@ -274,6 +232,7 @@ const Contact = props => {
                   error={phoneHelper.length !== 0}
                   id="phone"
                   fullWidth
+                  autoComplete="off"
                   value={phone}
                   onChange={onChange}
                 />
@@ -286,6 +245,7 @@ const Contact = props => {
                 className={classes.message}
                 multiline
                 fullWidth
+                autoComplete="off"
                 rows={10}
                 id="message"
                 onChange={event => setMessage(event.target.value)}

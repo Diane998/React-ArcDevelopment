@@ -12,6 +12,7 @@ import Websites from './pages/Websites';
 import Revolution from './pages/Revolution';
 import About from './pages/About';
 import Contact from './pages/Contact';
+import Estimate from './pages/Estimate';
 
 import { ThemeProvider } from '@material-ui/styles';
 
@@ -117,7 +118,17 @@ const App = () => {
               />
             )}
           />
-          <Route exact path="/estimate" component={() => <div>Estimate</div>} />
+          <Route
+            exact
+            path="/estimate"
+            render={props => (
+              <Estimate
+                {...props}
+                setValue={setValue}
+                setSelectedIndex={setSelectedIndex}
+              />
+            )}
+          />
         </Switch>
         <Footer setValue={setValue} setSelectedIndex={setSelectedIndex} />
       </BrowserRouter>

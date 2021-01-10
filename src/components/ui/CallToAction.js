@@ -12,7 +12,7 @@ import background from '../../assets/background.jpg';
 import mobileBackground from '../../assets/mobileBackground.jpg';
 
 const useStyles = makeStyles(theme => ({
-  learn: {
+  learnButton: {
     ...theme.typography.learnButton,
     fontSize: '0.9rem',
     height: 45,
@@ -31,7 +31,7 @@ const useStyles = makeStyles(theme => ({
       backgroundAttachment: 'inherit'
     }
   },
-  estimate: {
+  estimateButton: {
     ...theme.typography.estimate,
     backgroundColor: theme.palette.common.orange,
     borderRadius: 50,
@@ -88,7 +88,7 @@ const CallToAction = ({ setValue }) => {
                 onClick={() => setValue(2)}
                 component={Link}
                 to="/revolution"
-                className={classes.learn}
+                className={classes.learnButton}
                 variant="outlined"
               >
                 <span style={{ marginRight: 5 }}>Learn More</span>
@@ -108,7 +108,7 @@ const CallToAction = ({ setValue }) => {
           component={Link}
           to="/estimate"
           variant="contained"
-          className={classes.estimate}
+          className={classes.estimateButton}
         >
           Free Estimate
         </Button>
