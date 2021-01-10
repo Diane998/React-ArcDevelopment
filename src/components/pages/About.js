@@ -3,16 +3,11 @@ import { makeStyles, useTheme } from '@material-ui/core/styles';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 
 import history from '../../assets/history.svg';
-import profile from '../../assets/founder.jpg';
-import yearbook from '../../assets/yearbook.svg';
-import puppy from '../../assets/puppy.svg';
 
 import CallToAction from '../ui/CallToAction';
 
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
-import Avatar from '@material-ui/core/Avatar';
-import Hidden from '@material-ui/core/Hidden';
 
 const useStyles = makeStyles(theme => ({
   missionStatement: {
